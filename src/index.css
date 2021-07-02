@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@700&display=swap');
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+#searchBarDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#searchTerm {
+    border:none;
+    border-bottom: 3px solid #da291c;
+    width: 40vw;
+    height: 40px;
+}
+#submitButton{
+    height: 45px;
+    width: 80px;
+    background-color: #da291c;
+    color: #f2f2f2;
+    border: none;
+    border-radius: 20px;
+    margin: 0;
+    margin-left: 10px;
+}
+#submitButton:hover{
+    background-color: #333333;
+}
+#createNew{
+    margin-left: 50px;
+    color: #333333;
+}
+#createNew:hover{
+    color: #da291c;
+}
+#searchResults{
+    display: hidden;
+    grid-template-columns: 3;
+    min-height: 80%;
+    margin-top: 50px;
+    text-align: center;
+}
+.results{
+    margin-right: 20px;
+}
+h2{
+    font-family: 'Roboto';
+}
+p{
+    font-family: 'Lato';
+}
+#price{
+    font-weight: 400;
+}
+#color{
+    font-weight: 300;
+    font-style: italic;
+}
+@media only screen and (max-width: 900px) {
+    #searchResults{
+        display: flex !important;
+        flex-direction: column;
+    }
+}
