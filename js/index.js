@@ -19,8 +19,8 @@ $("#searchBar").submit(function (event) {
         url: "http://localhost:11807/api/Devices/" + searchTerm,
         type: "POST",
         success: function (data) {
-            document.getElementById("searchBarDiv").style.animation = "goUp2 1s";
             document.getElementById("searchResults").style.animation = "goUp 1s";
+            document.getElementById("searchBarDiv").style.animation = "goUp2 1s";
             changeTheStructure(data);
             writeInfo(data);
         }
@@ -67,7 +67,8 @@ function writeInfo(data) {
 
         $("#searchResults").append(div);
 
-        var row = Math.floor(element / 3) + 1;
+
+        var row = Math.floor(id / 3) + 1;
         var column = (id + 1) % 3;
 
         if (column === 0)
