@@ -41,9 +41,10 @@ function changeTheStructure(data) {
 
 function writeInfo(data) {
     var id = 0;
+
     data.forEach(element => {
         var div = document.createElement("div");
-        div.id = element["Name"];
+        div.id = element["ID"];
         div.className = "results";
 
         var img = document.createElement('img');
@@ -66,6 +67,13 @@ function writeInfo(data) {
         div.append(color);
 
         $("#searchResults").append(div);
+
+        div.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            localStorage.setItem("deviceToEdit", div.id);
+            window.open("editDevice.html", target = "_blank");
+        })
 
 
         var row = Math.floor(id / 3) + 1;
