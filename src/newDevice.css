@@ -6,6 +6,11 @@ body{
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
+    background-image: url("logo.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 30vw;
 }
 #addDeviceForm{
     display: flex;
@@ -22,18 +27,18 @@ input{
     height: 40px;
     font-family: 'Lato';
     font-size: 16px;
-}
-label{
-    margin-top:20px;
-    font-family: 'Lato';
+    margin-top:40px;
+    background: transparent;
 }
 select{
-    margin-top:15px;
+    margin-top:40px;
     border: 2px solid #da291c;
     border-radius: 20px;
     width: 40vw;
     height: 40px;
     padding-left: 10px;
+    background: transparent;
+
 }
 option {
     font-family: 'Lato';

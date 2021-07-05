@@ -34,6 +34,13 @@ $("#addDeviceForm").submit(function (event) {
         }
     }
 
+    if (device["Name"] == "" || Number.isNaN(device["Price"])) {
+        alert("Morate uneti naziv i cenu!");
+        return;
+    }
+
+    console.log(device);
+
     var jsonDevice = JSON.stringify(device);
 
     $.ajax({

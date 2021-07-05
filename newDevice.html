@@ -14,16 +14,12 @@
 
 <body>
     <form id="addDeviceForm">
-        <label for="name">Naziv</label>
-        <input type="text" id="name" name="name">
-        <label for="model">Model</label>
-        <input type="text" id="model" name="model">
-        <label for="color">Boja</label>
-        <input type="text" id="color" name="color">
-        <label for="price">Cena</label>
-        <input type="number" id="price" name="price">
-        <label for="manufacturerList">Proizvođač</label>
+        <input type="text" id="name" name="name" placeholder="Naziv">
+        <input type="text" id="model" name="model" placeholder="Model">
+        <input type="text" id="color" name="color" placeholder="Boja">
+        <input type="number" id="price" name="price" placeholder="Cena">
         <select id="manufacturerList" name="manufacturer">
+            <option value="" disabled selected>Izaberite proizvođača</option>
         </select>
         <input type="submit" value="Dodaj">
     </form>
