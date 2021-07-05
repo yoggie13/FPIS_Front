@@ -49,6 +49,10 @@ body{
     margin-top: 50px;
 
 }
+#searchTerm:focus{
+    width: 45vw;
+    outline: none;
+}
 p{
     margin-top:5px;
 }

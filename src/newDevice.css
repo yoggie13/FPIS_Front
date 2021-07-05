@@ -48,3 +48,8 @@ background-color: #da291c;
     margin-top: 30px;
     color:#f2f2f2;
 }
+input:focus,
+select:focus{
+    width: 45vw;
+    outline: none;
+}
