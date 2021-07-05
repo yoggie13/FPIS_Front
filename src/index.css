@@ -27,13 +27,13 @@ body{
     border: none;
     border-radius: 20px;
     margin: 0;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 #submitButton:hover{
     background-color: #333333;
 }
 #createNew{
-    margin-left: 50px;
+    margin-left: 25px;
     color: #333333;
 }
 #createNew:hover{
@@ -61,6 +61,22 @@ p{
 #color{
     font-weight: 300;
     font-style: italic;
+}
+@keyframes goUp{
+    from{
+        margin-top: 50%;
+    }
+    to{
+        margin-top: 10%;
+    }
+}
+@keyframes goUp2{
+    from{
+        margin-top: 20%;
+    }
+    to{
+        margin-top: 10%;
+    }
 }
 @media only screen and (max-width: 900px) {
     #searchResults{

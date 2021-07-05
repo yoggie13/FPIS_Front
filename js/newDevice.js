@@ -11,8 +11,46 @@ function getManufacturers() {
 
                 $("#manufacturerList").append(option);
             });
-            console.log(data);
+        },
+        error: function (data) {
+            alert("Trenutno se ne mogu prikazati proizvođači");
+            window.open('index.html');
         }
     });
 }
 window.onload = getManufacturers;
+
+$("#addDeviceForm").submit(function (event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    var device = {
+        "Name": data.get('name'),
+        "Model": data.get('model'),
+        "Color": data.get('color'),
+        "Price": parseFloat(data.get('price')),
+        "_Manufacturer": {
+            "ID": parseInt(data.get('manufacturer')),
+        }
+    }
+
+    var jsonDevice = JSON.stringify(device);
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:11807/api/Devices",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: {
+            "Accept": "application/json",
+        },
+        data: jsonDevice,
+        success: function (data) {
+            alert("Uspelo");
+            $("#addDeviceForm").trigger('reset');
+        },
+        error: function (data) {
+            alert("Nije uspelo");
+        }
+    });
+});

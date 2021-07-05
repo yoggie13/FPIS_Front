@@ -5,7 +5,8 @@ $("#createNew").click(function (event) {
 
 $("#searchBar").submit(function (event) {
     event.preventDefault();
-    $("#searchResults").html("");
+    var srcRs = $("#searchResults");
+    srcRs.html("");
 
     var searchTerm = $('#searchTerm').val();
     if (searchTerm === null || searchTerm === "" || searchTerm === " ") {
@@ -18,12 +19,15 @@ $("#searchBar").submit(function (event) {
         url: "http://localhost:11807/api/Devices/" + searchTerm,
         type: "POST",
         success: function (data) {
+            document.getElementById("searchBarDiv").style.animation = "goUp2 1s";
+            document.getElementById("searchResults").style.animation = "goUp 1s";
             changeTheStructure(data);
             writeInfo(data);
         }
 
     });
 });
+
 function changeTheStructure(data) {
     var searchResults = document.getElementById("searchResults");
     var length = Object.keys(data).length;
@@ -54,7 +58,7 @@ function writeInfo(data) {
 
         var price = document.createElement('p');
         price.id = 'price';
-        price.innerHTML = element['Price'];
+        price.innerHTML = element['Price'] + "$";
 
         div.append(img);
         div.append(h2);
