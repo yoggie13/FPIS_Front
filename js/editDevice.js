@@ -1,7 +1,23 @@
 var id = 0;
+var divIsBeingEdited = false;
 
-function openEditableVersionOfDiv(divID) {
-    changeTheStructureOfTheDivToEdit(divID);
+function openEditableVersionOfDiv(div) {
+    divIsBeingEdited = true;
+    div.childNodes[5].innerHTML = 'true';
+    changeTheStructureOfTheDivToEdit(div.id);
+}
+function closeTheEditingDiv() {
+    var divs = document.getElementById("searchResults").childNodes;
+    divs.forEach(element => {
+        if (element.childNodes[5].innerHTML === 'true') {
+            element.childNodes[6].remove();
+
+            for (let i = 0; i < 5; i++) {
+                element.childNodes[i].style.display = 'block';
+            }
+            element.childNodes[5].innerHTML = 'false';
+        }
+    });
 }
 
 function changeTheStructureOfTheDivToEdit(divID) {

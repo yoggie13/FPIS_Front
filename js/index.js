@@ -1,4 +1,5 @@
 var openCreate = true;
+var divs;
 
 $("#createNew").click(function (event) {
     if (openCreate) {
@@ -74,7 +75,7 @@ function writeInfo(data) {
 
         var manufacturer = document.createElement('p');
         manufacturer.id = 'manufacturer';
-        manufacturer.innerHTML = element["Manufacturer"]
+        manufacturer.innerHTML = element["Manufacturer"];
 
         div.append(img);
         div.append(h2);
@@ -82,13 +83,24 @@ function writeInfo(data) {
         div.append(price);
         div.append(color);
 
+        var isItBeingEdited = document.createElement('p');
+        isItBeingEdited.innerHTML = 'false';
+        isItBeingEdited.hidden = true;
+
+        div.append(isItBeingEdited);
+
         $("#searchResults").append(div);
 
         div.addEventListener("click", function (event) {
             event.preventDefault();
 
-            // localStorage.setItem("deviceToEdit", div.id);
-            openEditableVersionOfDiv(div.id);
+            if (divIsBeingEdited === true) {
+                closeTheEditingDiv();
+            }
+
+            if (div.childNodes[5].innerHTML === 'false')
+                openEditableVersionOfDiv(div);
+
         })
 
 
