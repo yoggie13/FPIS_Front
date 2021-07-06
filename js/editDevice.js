@@ -1,5 +1,62 @@
-window.onload = loadData;
 var id = 0;
+
+function openEditableVersionOfDiv(divID) {
+    changeTheStructureOfTheDivToEdit(divID);
+}
+
+function changeTheStructureOfTheDivToEdit(divID) {
+    var editableDiv = document.getElementById(divID);
+    var height = editableDiv.offsetHeight;
+    var width = editableDiv.offsetWidth;
+
+    var children = editableDiv.childNodes;
+
+    var form = document.createElement('form');
+    form.id = "editDeviceForm";
+    form.style.maxHeight = height + "px";
+    form.style.maxWidth = width + "px";
+
+    var name = document.createElement('input');
+    name.type = "text";
+    name.id = "name";
+    name.name = "name";
+    name.value = children[1].innerHTML;
+
+    var manufacturer = document.createElement('select');
+    manufacturer.id = "manufacturerList";
+    manufacturer.name = "manufacturerList";
+    manufacturer.value = children[1].innerHTML;
+
+    var price = document.createElement('input');
+    price.type = "number";
+    price.id = "price";
+    price.name = "price";
+    price.value = parseFloat(children[3].innerHTML.replace('$', ''));
+
+    var color = document.createElement('input');
+    color.type = "text";
+    color.id = "color";
+    color.name = "color";
+    color.value = children[4].innerHTML;
+
+    var submitEdit = document.createElement('input');
+    submitEdit.type = "submit";
+    submitEdit.id = "submitEdit";
+    submitEdit.value = "Sačuvaj promene";
+
+    form.append(name);
+    form.append(manufacturer);
+    form.append(price);
+    form.append(color);
+    form.append(submitEdit);
+
+    loadData();
+    children.forEach(element => {
+        element.style.display = "none";
+    });
+    editableDiv.append(form);
+    form.style.display = "flex";
+}
 
 function loadData() {
     $.ajax({
@@ -20,29 +77,29 @@ function loadData() {
             window.open('index.html');
         }
     });
-    id = localStorage.getItem("deviceToEdit");
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:11807/api/Devices/" + id,
-        success: function (data) {
-            fillTheData(data);
-        },
-        error: function (data) {
-            console.log(data);
-        }
-    });
+    // id = localStorage.getItem("deviceToEdit");
+    // $.ajax({
+    //     type: "GET",
+    //     url: "http://localhost:11807/api/Devices/" + id,
+    //     success: function (data) {
+    //         fillTheData(data);
+    //     },
+    //     error: function (data) {
+    //         console.log(data);
+    //     }
+    // });
 }
 
 function fillTheData(data) {
-    document.getElementById("name").value = data["name"];
-    document.getElementById("model").value = data["model"];
-    document.getElementById("color").value = data["color"];
-    document.getElementById("price").value = data["price"];
+    document.getElementById("eName").value = data["name"];
+    document.getElementById("eModel").value = data["model"];
+    document.getElementById("eColor").value = data["color"];
+    document.getElementById("ePrice").value = data["price"];
 
     document.getElementById("manufacturerList").value = data["_Manufacturer"].id;
 }
 
-$("#addDeviceForm").submit(function (event) {
+$("#editDeviceForm").submit(function (event) {
     event.preventDefault();
     const data = new FormData(event.target);
 

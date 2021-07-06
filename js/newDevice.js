@@ -18,7 +18,6 @@ function getManufacturers() {
         }
     });
 }
-window.onload = getManufacturers;
 
 $("#addDeviceForm").submit(function (event) {
     event.preventDefault();

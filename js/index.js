@@ -1,6 +1,17 @@
-$("#createNew").click(function (event) {
+var openCreate = true;
 
-    window.open("newDevice.html", target = "_blank");
+$("#createNew").click(function (event) {
+    if (openCreate) {
+        document.getElementById("searchResults").style.display = "none";
+        document.getElementById("createNewForm").style.display = "flex";
+        document.getElementById("createNew").style.color = "#da291c";
+        getManufacturers();
+    } else {
+        document.getElementById("searchResults").style.display = "flex";
+        document.getElementById("createNewForm").style.display = "none";
+        document.getElementById("createNew").style.color = "#333333";
+    }
+    openCreate = !openCreate;
 });
 
 $("#searchBar").submit(function (event) {
@@ -61,8 +72,13 @@ function writeInfo(data) {
         price.id = 'price';
         price.innerHTML = element['Price'] + "$";
 
+        var manufacturer = document.createElement('p');
+        manufacturer.id = 'manufacturer';
+        manufacturer.innerHTML = element["Manufacturer"]
+
         div.append(img);
         div.append(h2);
+        div.append(manufacturer);
         div.append(price);
         div.append(color);
 
@@ -71,8 +87,8 @@ function writeInfo(data) {
         div.addEventListener("click", function (event) {
             event.preventDefault();
 
-            localStorage.setItem("deviceToEdit", div.id);
-            window.open("editDevice.html", target = "_blank");
+            // localStorage.setItem("deviceToEdit", div.id);
+            openEditableVersionOfDiv(div.id);
         })
 
 

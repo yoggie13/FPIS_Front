@@ -15,10 +15,18 @@ body{
     overflow-x: hidden;
     margin: 0;
 }
+#createNewForm{
+    display: none;
+}
 h1{
     font-family: 'Roboto';
     font-style: italic;
     font-weight: 900;
+}
+h2{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
 }
 #searchBarDiv{
     display: flex;
@@ -33,6 +41,52 @@ h1{
     width: 40vw;
     height: 40px;
     background: transparent;
+}
+#addDeviceForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    border:none;
+    border-bottom: 2px solid #da291c;
+    width: 40vw;
+    height: 40px;
+    font-family: 'Lato';
+    font-size: 16px;
+    margin-top:40px;
+    background: transparent;
+    max-width: 100%;
+
+}
+select{
+    margin-top:40px;
+    border: 2px solid #da291c;
+    border-radius: 20px;
+    width: 40vw;
+    height: 40px;
+    padding-left: 10px;
+    background: transparent;
+    max-width: 100%;
+}
+option {
+    font-family: 'Lato';
+}
+input[type=submit]{
+border-radius: 20px;
+background-color: #da291c;
+    width: 20vw;
+    height: 40px;
+    font-family: 'Lato';
+    font-size: 16px;
+    margin-top: 30px;
+    color:#f2f2f2;
+}
+input:focus,
+select:focus{
+    width: 45vw;
+    outline: none;
 }
 #submitButton{
     height: 45px;
@@ -88,6 +142,12 @@ p{
 #color{
     font-weight: 300;
     font-style: italic;
+}
+#editDeviceForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 @keyframes goUp{
     from{

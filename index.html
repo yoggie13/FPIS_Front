@@ -16,14 +16,29 @@
     <h1>Dobrodošli na A1 portal</h1>
     <div id="searchBarDiv">
         <form id="searchBar">
-            <input type="text" id="searchTerm">
+            <input type="search" id="searchTerm">
             <input type="submit" value="Pretraži" id="submitButton">
         </form>
         <i class="fas fa-plus fa-2x" id="createNew"></i>
     </div>
 
     <div id="searchResults"></div>
+    <div id="createNewForm">
+        <form id="addDeviceForm">
+            <h2>Dodaj uređaj</h2>
+            <input type="text" id="name" name="name" placeholder="Naziv">
+            <input type="text" id="model" name="model" placeholder="Model">
+            <input type="text" id="color" name="color" placeholder="Boja">
+            <input type="number" id="price" name="price" placeholder="Cena">
+            <select id="manufacturerList" name="manufacturer">
+                <option value="" disabled selected>Izaberite proizvođača</option>
+            </select>
+            <input type="submit" value="Dodaj">
+        </form>
+    </div>
 </body>
 <script src="js/index.js"></script>
+<script src="js/editDevice.js"></script>
+<script src="js/newDevice.js"></script>
 
 </html>
