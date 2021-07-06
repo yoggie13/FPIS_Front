@@ -69,6 +69,8 @@ function changeTheStructureOfTheDivToEdit() {
     });
     form.style.display = "flex";
     editableDiv.append(form);
+
+    addSubmitListener();
 }
 
 function loadData() {
@@ -92,43 +94,46 @@ function loadData() {
     });
 }
 
-$("#editDeviceForm").submit(function (event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
+function addSubmitListener() {
+    $("#editDeviceForm").submit(function (event) {
+        debugger;
+        event.preventDefault();
+        const data = new FormData(event.target);
 
-    var device = {
-        "ID": id,
-        "Name": data.get('name'),
-        "Model": data.get('model'),
-        "Color": data.get('color'),
-        "Price": parseFloat(data.get('price')),
-        "_Manufacturer": {
-            "ID": parseInt(data.get('manufacturer')),
+        var device = {
+            "ID": id,
+            "Name": data.get('name'),
+            "Model": data.get('model'),
+            "Color": data.get('color'),
+            "Price": parseFloat(data.get('price')),
+            "_Manufacturer": {
+                "ID": parseInt(data.get('manufacturer')),
+            }
         }
-    }
 
-    if (device["Name"] == "" || Number.isNaN(device["Price"])) {
-        alert("Morate uneti naziv i cenu!");
-        return;
-    }
-
-    console.log(device);
-
-    var jsonDevice = JSON.stringify(device);
-
-    $.ajax({
-        type: "PUT",
-        url: "http://localhost:11807/api/Devices/" + id,
-        contentType: "application/json; charset=utf-8",
-        headers: {
-            "Accept": "application/json",
-        },
-        data: jsonDevice,
-        success: function (data) {
-            alert("Uspešno izmenjeno");
-        },
-        error: function (data) {
-            alert("Greška pri čuvanju izmena");
+        if (device["Name"] == "" || Number.isNaN(device["Price"])) {
+            alert("Morate uneti naziv i cenu!");
+            return;
         }
+
+        console.log(device);
+
+        var jsonDevice = JSON.stringify(device);
+
+        $.ajax({
+            type: "PUT",
+            url: "http://localhost:11807/api/Devices/" + id,
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                "Accept": "application/json",
+            },
+            data: jsonDevice,
+            success: function (data) {
+                alert("Uspešno izmenjeno");
+            },
+            error: function (data) {
+                alert("Greška pri čuvanju izmena");
+            }
+        });
     });
-});
+}
