@@ -13,6 +13,11 @@ body{
     background-size: 30vw;
     margin: 0;
 }
+h1{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+}
 #addDeviceForm{
     display: flex;
     flex-direction: column;
