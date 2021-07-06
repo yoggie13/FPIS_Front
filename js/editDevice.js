@@ -3,25 +3,22 @@ var divIsBeingEdited = false;
 
 function openEditableVersionOfDiv(div) {
     divIsBeingEdited = true;
-    div.childNodes[5].innerHTML = 'true';
-    changeTheStructureOfTheDivToEdit(div.id);
+    globalDiv.childNodes[5].innerHTML = 'true';
+    changeTheStructureOfTheDivToEdit();
 }
 function closeTheEditingDiv() {
-    var divs = document.getElementById("searchResults").childNodes;
-    divs.forEach(element => {
-        if (element.childNodes[5].innerHTML === 'true') {
-            element.childNodes[6].remove();
 
-            for (let i = 0; i < 5; i++) {
-                element.childNodes[i].style.display = 'block';
-            }
-            element.childNodes[5].innerHTML = 'false';
-        }
-    });
+    globalDiv.childNodes[6].remove();
+
+    for (let i = 0; i < 5; i++) {
+        globalDiv.childNodes[i].style.display = 'block';
+    }
+    globalDiv.childNodes[5].innerHTML = 'false';
+
 }
 
-function changeTheStructureOfTheDivToEdit(divID) {
-    var editableDiv = document.getElementById(divID);
+function changeTheStructureOfTheDivToEdit() {
+    var editableDiv = globalDiv;
     var height = editableDiv.offsetHeight;
     var width = editableDiv.offsetWidth;
 
@@ -53,7 +50,7 @@ function changeTheStructureOfTheDivToEdit(divID) {
     color.type = "text";
     color.id = "color";
     color.name = "color";
-    color.value = children[4].innerHTML;
+    color.value = (children[4].childNodes)[0].innerHTML;
 
     var submitEdit = document.createElement('input');
     submitEdit.type = "submit";
@@ -70,8 +67,8 @@ function changeTheStructureOfTheDivToEdit(divID) {
     children.forEach(element => {
         element.style.display = "none";
     });
-    editableDiv.append(form);
     form.style.display = "flex";
+    editableDiv.append(form);
 }
 
 function loadData() {
@@ -93,26 +90,6 @@ function loadData() {
             window.open('index.html');
         }
     });
-    // id = localStorage.getItem("deviceToEdit");
-    // $.ajax({
-    //     type: "GET",
-    //     url: "http://localhost:11807/api/Devices/" + id,
-    //     success: function (data) {
-    //         fillTheData(data);
-    //     },
-    //     error: function (data) {
-    //         console.log(data);
-    //     }
-    // });
-}
-
-function fillTheData(data) {
-    document.getElementById("eName").value = data["name"];
-    document.getElementById("eModel").value = data["model"];
-    document.getElementById("eColor").value = data["color"];
-    document.getElementById("ePrice").value = data["price"];
-
-    document.getElementById("manufacturerList").value = data["_Manufacturer"].id;
 }
 
 $("#editDeviceForm").submit(function (event) {

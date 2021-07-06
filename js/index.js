@@ -1,5 +1,6 @@
 var openCreate = true;
 var divs;
+var globalDiv;
 
 $("#createNew").click(function (event) {
     if (openCreate) {
@@ -66,22 +67,31 @@ function writeInfo(data) {
         h2.innerHTML = element['Name'];
 
         var color = document.createElement('p');
-        color.id = "color";
+        color.className = "color";
         color.innerHTML = element['Color'];
 
+        var icon = document.createElement('i');
+        icon.className = "fas fa-edit";
+
+        var span = document.createElement('span');
+        span.className = 'span';
+
+        span.append(color);
+        span.append(icon)
+
         var price = document.createElement('p');
-        price.id = 'price';
+        price.className = 'price';
         price.innerHTML = element['Price'] + "$";
 
         var manufacturer = document.createElement('p');
-        manufacturer.id = 'manufacturer';
+        manufacturer.className = 'manufacturer';
         manufacturer.innerHTML = element["Manufacturer"];
 
         div.append(img);
         div.append(h2);
         div.append(manufacturer);
         div.append(price);
-        div.append(color);
+        div.append(span);
 
         var isItBeingEdited = document.createElement('p');
         isItBeingEdited.innerHTML = 'false';
@@ -91,18 +101,18 @@ function writeInfo(data) {
 
         $("#searchResults").append(div);
 
-        div.addEventListener("click", function (event) {
+        icon.addEventListener("click", function eventFunction(event) {
             event.preventDefault();
 
             if (divIsBeingEdited === true) {
                 closeTheEditingDiv();
             }
 
-            if (div.childNodes[5].innerHTML === 'false')
-                openEditableVersionOfDiv(div);
-
-        })
-
+            if (icon.parentElement.parentElement.childNodes[5].innerHTML === 'false') {
+                globalDiv = icon.parentElement.parentElement;
+                openEditableVersionOfDiv();
+            }
+        });
 
         var row = Math.floor(id / 3) + 1;
         var column = (id + 1) % 3;

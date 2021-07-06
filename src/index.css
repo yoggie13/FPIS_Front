@@ -127,7 +127,7 @@ p{
 .results{
     margin-right: 20px;
 }
-.results:hover{
+i:hover{
     cursor: pointer;
 }
 h2{
@@ -136,10 +136,10 @@ h2{
 p{
     font-family: 'Lato';
 }
-#price{
+.price{
     font-weight: 400;
 }
-#color{
+.color{
     font-weight: 300;
     font-style: italic;
 }
