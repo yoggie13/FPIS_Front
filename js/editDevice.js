@@ -100,8 +100,11 @@ function changeTheStructureOfTheDivToEdit() {
 function addSubmitListener() {
     $("#editDeviceForm").submit(function (event) {
         event.preventDefault();
+        event.stopImmediatePropagation();
+
         const data = new FormData(event.target);
 
+        debugger;
         var device = {
             "ID": globalDiv.id,
             "Name": data.get('name'),
