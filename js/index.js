@@ -32,10 +32,17 @@ $("#searchBar").submit(function (event) {
         url: "http://localhost:11807/api/Devices/" + searchTerm,
         type: "POST",
         success: function (data) {
+            if (data.length === 0) {
+                alert("Nema uređaja koji sadrže: " + searchTerm);
+                return;
+            }
+
             document.getElementById("searchResults").style.animation = "goUp 1s";
             document.getElementById("searchBarDiv").style.animation = "goUp2 1s";
             changeTheStructure(data);
             writeInfo(data);
+        }, error: function (data) {
+            alert("Greška na serveru");
         }
 
     });
