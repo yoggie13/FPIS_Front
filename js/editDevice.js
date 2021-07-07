@@ -10,10 +10,15 @@ function closeTheEditingDiv() {
 
     globalDiv.childNodes[6].remove();
 
+
     for (let i = 0; i < 5; i++) {
-        globalDiv.childNodes[i].style.display = 'block';
+        if (i === 1)
+            globalDiv.childNodes[i].style.display = 'flex';
+        else globalDiv.childNodes[i].style.display = 'block';
     }
     globalDiv.childNodes[5].innerHTML = 'false';
+
+    divIsBeingEdited = false;
 
 }
 
@@ -33,7 +38,7 @@ function changeTheStructureOfTheDivToEdit() {
     name.type = "text";
     name.id = "name";
     name.name = "name";
-    name.value = children[1].innerHTML;
+    name.value = (children[1].childNodes)[0].innerHTML;
 
     var manufacturer = document.createElement('select');
     manufacturer.id = "manufacturerList";
@@ -50,7 +55,7 @@ function changeTheStructureOfTheDivToEdit() {
     color.type = "text";
     color.id = "color";
     color.name = "color";
-    color.value = (children[4].childNodes)[0].innerHTML;
+    color.value = children[4].innerHTML;
 
     var submitEdit = document.createElement('input');
     submitEdit.type = "submit";

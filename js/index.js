@@ -66,18 +66,21 @@ function writeInfo(data) {
         var h2 = document.createElement('h2');
         h2.innerHTML = element['Name'];
 
-        var color = document.createElement('p');
-        color.className = "color";
-        color.innerHTML = element['Color'];
-
         var icon = document.createElement('i');
         icon.className = "fas fa-edit";
 
         var span = document.createElement('span');
         span.className = 'span';
 
-        span.append(color);
-        span.append(icon)
+
+        span.append(h2);
+        span.append(icon);
+
+        var color = document.createElement('p');
+        color.className = "color";
+        color.innerHTML = element['Color'];
+
+
 
         var price = document.createElement('p');
         price.className = 'price';
@@ -88,10 +91,10 @@ function writeInfo(data) {
         manufacturer.innerHTML = element["Manufacturer"];
 
         div.append(img);
-        div.append(h2);
+        div.append(span);
         div.append(manufacturer);
         div.append(price);
-        div.append(span);
+        div.append(color);
 
         var isItBeingEdited = document.createElement('p');
         isItBeingEdited.innerHTML = 'false';
