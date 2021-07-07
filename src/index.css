@@ -41,6 +41,7 @@ h2{
     width: 40vw;
     height: 40px;
     background: transparent;
+    margin-top: 0;
 }
 .span{
     display: flex;

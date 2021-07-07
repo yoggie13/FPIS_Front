@@ -38,8 +38,6 @@ $("#addDeviceForm").submit(function (event) {
         return;
     }
 
-    console.log(device);
-
     var jsonDevice = JSON.stringify(device);
 
     $.ajax({

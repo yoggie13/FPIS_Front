@@ -1,23 +1,33 @@
-var openCreate = true;
+var createOpened = false;
 var divs;
 var globalDiv;
 
 $("#createNew").click(function (event) {
-    if (openCreate) {
+    if (!createOpened) {
         document.getElementById("searchResults").style.display = "none";
         document.getElementById("createNewForm").style.display = "flex";
         document.getElementById("createNew").style.color = "#da291c";
         getManufacturers();
     } else {
-        document.getElementById("searchResults").style.display = "flex";
         document.getElementById("createNewForm").style.display = "none";
         document.getElementById("createNew").style.color = "#333333";
     }
-    openCreate = !openCreate;
+    createOpened = !createOpened;
 });
 
 $("#searchBar").submit(function (event) {
     event.preventDefault();
+
+    debugger;
+
+    if (createOpened === true) {
+        document.getElementById("searchResults").style.display = "flex";
+        document.getElementById("createNewForm").style.display = "none";
+        document.getElementById("createNew").style.color = "#333333";
+
+        createOpened = false;
+    }
+
     var srcRs = $("#searchResults");
     srcRs.html("");
 
