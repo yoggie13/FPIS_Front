@@ -43,7 +43,6 @@ function changeTheStructureOfTheDivToEdit() {
     var manufacturer = document.createElement('select');
     manufacturer.id = "manufacturerList";
     manufacturer.name = "manufacturerList";
-    manufacturer.value = children[1].innerHTML;
 
     var price = document.createElement('input');
     price.type = "number";
@@ -68,17 +67,10 @@ function changeTheStructureOfTheDivToEdit() {
     form.append(color);
     form.append(submitEdit);
 
-    loadData();
     children.forEach(element => {
         element.style.display = "none";
     });
-    form.style.display = "flex";
-    editableDiv.append(form);
 
-    addSubmitListener();
-}
-
-function loadData() {
     $.ajax({
         url: "http://localhost:11807/api/Devices/Manufacturers",
         type: "GET",
@@ -89,7 +81,13 @@ function loadData() {
                 option.value = element["id"];
                 option.innerHTML = element["name"];
 
-                $("#manufacturerList").append(option);
+                manufacturer.append(option);
+                manufacturer.value = children[2].id;
+
+                form.style.display = "flex";
+                editableDiv.append(form);
+
+                addSubmitListener();
             });
         },
         error: function (data) {
@@ -101,18 +99,17 @@ function loadData() {
 
 function addSubmitListener() {
     $("#editDeviceForm").submit(function (event) {
-        debugger;
         event.preventDefault();
         const data = new FormData(event.target);
 
         var device = {
-            "ID": id,
+            "ID": globalDiv.id,
             "Name": data.get('name'),
             "Model": data.get('model'),
             "Color": data.get('color'),
             "Price": parseFloat(data.get('price')),
             "_Manufacturer": {
-                "ID": parseInt(data.get('manufacturer')),
+                "ID": parseInt(data.get('manufacturerList')),
             }
         }
 
@@ -127,7 +124,7 @@ function addSubmitListener() {
 
         $.ajax({
             type: "PUT",
-            url: "http://localhost:11807/api/Devices/" + id,
+            url: "http://localhost:11807/api/Devices/" + globalDiv.id,
             contentType: "application/json; charset=utf-8",
             headers: {
                 "Accept": "application/json",
@@ -135,10 +132,12 @@ function addSubmitListener() {
             data: jsonDevice,
             success: function (data) {
                 alert("Uspešno izmenjeno");
+                $("#searchBar").submit();
             },
             error: function (data) {
                 alert("Greška pri čuvanju izmena");
             }
         });
     });
+
 }

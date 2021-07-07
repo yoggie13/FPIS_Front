@@ -72,7 +72,6 @@ function writeInfo(data) {
         var span = document.createElement('span');
         span.className = 'span';
 
-
         span.append(h2);
         span.append(icon);
 
@@ -80,15 +79,14 @@ function writeInfo(data) {
         color.className = "color";
         color.innerHTML = element['Color'];
 
-
-
         var price = document.createElement('p');
         price.className = 'price';
         price.innerHTML = element['Price'] + "$";
 
         var manufacturer = document.createElement('p');
         manufacturer.className = 'manufacturer';
-        manufacturer.innerHTML = element["Manufacturer"];
+        manufacturer.innerHTML = element["Manufacturer"]["Manufacturer_Name"];
+        manufacturer.id = element["Manufacturer"]["Manufacturer_ID"];
 
         div.append(img);
         div.append(span);
